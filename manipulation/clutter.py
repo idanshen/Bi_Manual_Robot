@@ -165,7 +165,8 @@ def GenerateAntipodalGraspCandidate(diagram,
 
         X_G = RigidTransform(R_WG2, p_WG)
         plant.SetFreeBodyPose(plant_context, wsg, X_G)
-        cost = GraspCandidateCost(diagram, context, cloud, adjust_X_G=True)
+        # IDAN
+        cost = GraspCandidateCost(diagram, context, cloud, adjust_X_G=True, wsg_body_index=wsg_body_index)
         X_G = plant.GetFreeBodyPose(plant_context, wsg)
         if np.isfinite(cost):
             return cost, X_G
